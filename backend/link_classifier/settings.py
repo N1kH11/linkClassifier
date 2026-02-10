@@ -123,13 +123,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/6.0/howto/static-files/
+
 STATIC_URL = 'static/'
-if 'RENDER' not in os.environ:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    try:
-        os.makedirs(STATIC_ROOT, exist_ok=True)
-    except OSError:
-        pass
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+if 'RENDER' in os.environ:
+    # Tell Django to copy statics to the `staticfiles` directory
+    # in your application directory on Render.
+    os.makedirs(STATIC_ROOT, exist_ok=True)
     
     # Enable WhiteNoise's Gzip compression of static assets.
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
