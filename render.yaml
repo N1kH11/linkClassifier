@@ -2,6 +2,7 @@ services:
   - type: web
     name: link-classifier-backend
     env: python
+    rootDirectory: backend
     buildCommand: "./build.sh"
     startCommand: "gunicorn link_classifier.wsgi:application"
     envVars:
